@@ -1,0 +1,43 @@
+.App {
+    text-align: center;
+}
+
+h1 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0;
+    border-bottom: 1px solid gray;
+}
+
+h1:hover {
+    cursor: pointer;
+}
+
+.NoteBody {
+    display: grid;
+    text-align: left;
+    grid-template-columns: 150px 1fr;
+    border-bottom: 1px solid gray;
+}
+
+input {
+    display: block;
+}
+
+.ItemList {
+    border-right: 1px solid gray;
+    border-bottom: 0;
+}
+
+@media (max-width: 800px) {
+    .NoteBody {
+        display: block;
+        text-align: left;
+        border-bottom: 0;
+    }
+
+    .ItemList {
+        border-right: 0;
+        border-bottom: 1px solid gray;
+    }
+}
