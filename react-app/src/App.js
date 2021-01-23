@@ -19,13 +19,29 @@ class App extends Component {
       ]
     }
   }
+  getContent () {
+    let _article = null
+    switch (this.state.mode) {
+      case 'welcome':
+        _article = <ReadContent data={this.state.welcome}></ReadContent>
+        break
+      case 'read':
+        _article = <ReadContent></ReadContent>
+        break
+      case 'create':
+        break
+      case 'update':
+        break
+    }
+    return _article
+  }
   render () {
     return (
       <div className="App">
         <Header></Header>
         <div className="NoteBody">
           <ItemList data={this.state.content}></ItemList>
-          <UpdateContent></UpdateContent>
+          {this.getContent()}
         </div>
       </div>
     )
