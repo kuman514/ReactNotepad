@@ -4,7 +4,18 @@ class Header extends Component {
   render () {
     return (
       <div>
-        <h1>React Notepad</h1>
+        <a
+          href='/welcome/'
+          onClick={function (e) {
+            e.preventDefault()
+            //console.log(e)
+            this.props.onChangePage()
+          }.bind(this)}
+        >
+          <h1>
+            {this.props.appName}
+          </h1>
+        </a>
       </div>
     )
   }

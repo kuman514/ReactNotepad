@@ -11,7 +11,9 @@ class ItemList extends Component {
             href={"/content/" + _data[i].id}
             data-id={_data[i].id}
             onClick={function (e) {
-
+              e.preventDefault()
+              //console.log(e)
+              this.props.onChangePage(e.target.dataset.id)
             }.bind(this)}
           >
             {_data[i].title}
