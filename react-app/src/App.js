@@ -13,7 +13,7 @@ class App extends Component {
     this.appName = 'React Notepad'
     this.state = {
       mode: 'welcome',
-      readingItemId: 0,
+      readingItemId: 1,
       welcome: {title: 'Welcome', detail: 'This is a notepad using React.'},
       content: [
         {id: 1, title: 'Sample 1', detail: 'This is a sample text.'},
@@ -60,6 +60,25 @@ class App extends Component {
         }.bind(this)}></CreateContent>
         break
       case 'update':
+        _article = <UpdateContent data={this.state.content[this.getItemData()]}
+          onSubmit={function (_id, _title, _detail) {
+          let modArr = Array.from(this.state.content)
+          for (let i = 0; i < modArr.length; i++) {
+            if (modArr[i].id === _id) {
+              modArr[i] = {
+                id: _id,
+                title: _title,
+                detail: _detail
+              }
+              break
+            }
+          }
+          this.setState({
+            content: modArr,
+            mode: 'read',
+            readingItemId: _id
+          })
+        }.bind(this)}></UpdateContent>
         break
       default:
     }
