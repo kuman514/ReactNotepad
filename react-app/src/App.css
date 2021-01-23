@@ -29,6 +29,11 @@ input {
     border-bottom: 0;
 }
 
+article {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 @media (max-width: 800px) {
     .NoteBody {
         display: block;
