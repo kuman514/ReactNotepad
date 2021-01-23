@@ -9,7 +9,7 @@ import UpdateContent from './components/UpdateContent'
 class App extends Component {
   constructor (props) {
     super(props)
-    this.addingId = 2
+    this.addingId = 4
     this.appName = 'React Notepad'
     this.state = {
       mode: 'welcome',
@@ -46,7 +46,18 @@ class App extends Component {
         }
         break
       case 'create':
-        _article = <CreateContent></CreateContent>
+        _article = <CreateContent onSubmit={function (_title, _detail) {
+          let addArr = this.state.content.concat(
+            {id: this.addingId, title: _title, detail: _detail}
+          )
+          let _readId = this.addingId
+          this.addingId++
+          this.setState({
+            content: addArr,
+            mode: 'read',
+            readingItemId: _readId
+          })
+        }.bind(this)}></CreateContent>
         break
       case 'update':
         break
