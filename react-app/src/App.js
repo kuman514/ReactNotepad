@@ -46,6 +46,7 @@ class App extends Component {
         }
         break
       case 'create':
+        _article = <CreateContent></CreateContent>
         break
       case 'update':
         break
@@ -75,6 +76,15 @@ class App extends Component {
                 mode: 'read',
                 readingItemId: Number(targetId)
               })
+            }.bind(this)}
+            onChangeMode={function (_mode) {
+              if (_mode === 'delete') {
+
+              } else {
+                this.setState({
+                  mode: _mode,
+                })
+              }
             }.bind(this)}
           >
           </ItemList>

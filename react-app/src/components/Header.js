@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 
 class Header extends Component {
+  shouldComponentUpdate (newProps, newState) {
+    return false
+  }
   render () {
     return (
       <div>

@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 
 class ItemList extends Component {
+  shouldComponentUpdate (newProps, newState) {
+    if (this.props.data === newProps.data) {
+      return false
+    } else {
+      return true
+    }
+  }
   render () {
     let _article = []
     let _data = this.props.data
@@ -23,9 +30,41 @@ class ItemList extends Component {
     }
     return (
       <div className="ItemList">
-        <input type="button" value="Create"></input>
-        <input type="button" value="Update"></input>
-        <input type="button" value="Delete"></input>
+        <ul>
+          <li>
+            <a
+              href="/create"
+              onClick={function (e) {
+                e.preventDefault()
+                this.props.onChangeMode('create')
+              }.bind(this)}
+            >
+              Create
+            </a>
+          </li>
+          <li>
+            <a
+              href="/update"
+              onClick={function (e) {
+                e.preventDefault()
+                this.props.onChangeMode('update')
+              }.bind(this)}
+            >
+              Update
+            </a>
+          </li>
+          <li>
+            <input
+              type="button"
+              value="Delete"
+              onClick={function (e) {
+                e.preventDefault()
+                this.props.onChangeMode('delete')
+              }.bind(this)}
+            >
+            </input>
+          </li>
+        </ul>
         <ul>
           {_article}
         </ul>
