@@ -7,12 +7,24 @@ import CreateContent from './components/CreateContent'
 import UpdateContent from './components/UpdateContent'
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+    this.addingId = 2
+    this.state = {
+      mode: 'welcome',
+      readingItemId: 0,
+      welcome: {title: 'Welcome', detail: 'This is a notepad using React.'},
+      content: [
+        {id: 1, title: 'Sample', detail: 'This is a sample text.'}
+      ]
+    }
+  }
   render () {
     return (
       <div className="App">
         <Header></Header>
         <div className="NoteBody">
-          <ItemList></ItemList>
+          <ItemList data={this.state.content}></ItemList>
           <UpdateContent></UpdateContent>
         </div>
       </div>
