@@ -13,7 +13,7 @@ class App extends Component {
     this.appName = 'React Notepad'
     this.state = {
       mode: 'welcome',
-      readingItemId: 1,
+      readingItemId: 0,
       welcome: {title: 'Welcome', detail: 'This is a notepad using React.'},
       content: [
         {id: 1, title: 'Sample 1', detail: 'This is a sample text.'},
@@ -60,25 +60,30 @@ class App extends Component {
         }.bind(this)}></CreateContent>
         break
       case 'update':
-        _article = <UpdateContent data={this.state.content[this.getItemData()]}
-          onSubmit={function (_id, _title, _detail) {
-          let modArr = Array.from(this.state.content)
-          for (let i = 0; i < modArr.length; i++) {
-            if (modArr[i].id === _id) {
-              modArr[i] = {
-                id: _id,
-                title: _title,
-                detail: _detail
+        if (this.state.readingItemId === 0) {
+          _article = <article><h3>Select an item first.</h3></article>
+        } else {
+          _article = <UpdateContent data={this.state.content[this.getItemData()]}
+            onSubmit={function (_id, _title, _detail) {
+              let modArr = Array.from(this.state.content)
+              for (let i = 0; i < modArr.length; i++) {
+                if (modArr[i].id === _id) {
+                  modArr[i] = {
+                    id: _id,
+                    title: _title,
+                    detail: _detail
+                  }
+                  break
+                }
               }
-              break
-            }
-          }
-          this.setState({
-            content: modArr,
-            mode: 'read',
-            readingItemId: _id
-          })
-        }.bind(this)}></UpdateContent>
+              this.setState({
+                content: modArr,
+                mode: 'read',
+                readingItemId: _id
+              })
+            }.bind(this)}>
+          </UpdateContent>
+        }
         break
       default:
     }
