@@ -114,7 +114,23 @@ class App extends Component {
             }.bind(this)}
             onChangeMode={function (_mode) {
               if (_mode === 'delete') {
-
+                if (this.state.readingItemId === 0) {
+                  this.setState({
+                    mode: 'welcome',
+                    readingItemId: 0
+                  })
+                } else {
+                  let delIndex = this.getItemData()
+                  if (window.confirm('Are you sure to delete ' + this.state.content[delIndex].title + '?')) {
+                    let delArr = Array.from(this.state.content)
+                    delArr.splice(delIndex, 1)
+                    this.setState({
+                      mode: 'welcome',
+                      content: delArr,
+                      readingItemId: 0
+                    })
+                  }
+                }
               } else {
                 this.setState({
                   mode: _mode,
