@@ -58,6 +58,15 @@ class ItemList extends Component {
             }.bind(this)}
           >
           </input></li>
+          <li><input
+            type="button"
+            value="Load Backup"
+            onClick={function (e) {
+              e.preventDefault()
+              this.props.onChangeMode('load')
+            }.bind(this)}
+          >
+          </input></li>
         </ul>
         <ul>
           {_article}

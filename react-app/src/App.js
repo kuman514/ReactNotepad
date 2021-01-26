@@ -18,7 +18,7 @@ class App extends Component {
       content: [
         {id: 1, title: 'Sample 1', detail: 'This is a sample text.'},
         {id: 2, title: 'Sample 2', detail: 'What is your favorite food?'},
-        {id: 3, title: 'Sample 3', detail: 'I don\' feel good until the test is over.'},
+        {id: 3, title: 'Sample 3', detail: 'I don\'t feel good until the test is over.'},
       ]
     }
   }
@@ -113,28 +113,34 @@ class App extends Component {
               })
             }.bind(this)}
             onChangeMode={function (_mode) {
-              if (_mode === 'delete') {
-                if (this.state.readingItemId === 0) {
-                  this.setState({
-                    mode: 'welcome',
-                    readingItemId: 0
-                  })
-                } else {
-                  let delIndex = this.getItemData()
-                  if (window.confirm('Are you sure to delete ' + this.state.content[delIndex].title + '?')) {
-                    let delArr = Array.from(this.state.content)
-                    delArr.splice(delIndex, 1)
+              switch (_mode) {
+                case 'delete':
+                  if (this.state.readingItemId === 0) {
                     this.setState({
                       mode: 'welcome',
-                      content: delArr,
                       readingItemId: 0
                     })
+                  } else {
+                    let delIndex = this.getItemData()
+                    if (window.confirm('Are you sure to delete ' + this.state.content[delIndex].title + '?')) {
+                      let delArr = Array.from(this.state.content)
+                      delArr.splice(delIndex, 1)
+                      this.setState({
+                        mode: 'welcome',
+                        content: delArr,
+                        readingItemId: 0
+                      })
+                    }
                   }
-                }
-              } else {
-                this.setState({
-                  mode: _mode,
-                })
+                  break
+                case 'load':
+                  break
+                case 'save':
+                  break
+                default:
+                  this.setState({
+                    mode: _mode,
+                  })
               }
             }.bind(this)}
           >
