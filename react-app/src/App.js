@@ -134,11 +134,25 @@ class App extends Component {
                   }
                   break
                 case 'load':
-                  var input = document.createElement("input")
-                  input.type = "file"
-                  input.accept = "text/plain"
-                  input.onchange = function (event) {
-                    console.log(event.target.files[0])
+                  let newArr = []
+                  let input = document.createElement('input')
+                  input.type = 'file'
+                  input.accept = '.csv'
+                  input.onchange = function (e) {
+                    let reader = new FileReader()
+                    reader.onload = function () {
+                      let getBackup = reader.result.split(/\r\n|\n/).slice(0, -1)
+                      for (let i = 0; i < getBackup.length; i++) {
+                        let current = getBackup[i].split(',')
+                        console.log(current)
+                        newArr.push({
+                          id: current[0],
+                          title: current[1],
+                          detail: current[2]
+                        })
+                      }
+                    }
+                    reader.readAsBinaryString(e.target.files[0], 'utf-8')
                   }
                   input.click()
                   break
