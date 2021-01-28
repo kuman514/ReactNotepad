@@ -134,6 +134,13 @@ class App extends Component {
                   }
                   break
                 case 'load':
+                  var input = document.createElement("input")
+                  input.type = "file"
+                  input.accept = "text/plain"
+                  input.onchange = function (event) {
+                    console.log(event.target.files[0])
+                  }
+                  input.click()
                   break
                 case 'save':
                   break
