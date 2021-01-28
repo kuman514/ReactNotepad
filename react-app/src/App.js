@@ -168,6 +168,13 @@ class App extends Component {
                   input.click()
                   break
                 case 'save':
+                  let saveCsv = 'data:text/csv;charset=utf-8,'
+                  for (let i = 0; i < this.state.content.length; i++) {
+                    let row = this.state.content[i].id + ',' + this.state.content[i].title + ',' + this.state.content[i].detail
+                    saveCsv += (row + '\n')
+                  }
+                  let encodeUri = encodeURI(saveCsv)
+                  console.log(encodeUri)
                   break
                 default:
                   this.setState({

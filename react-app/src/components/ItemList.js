@@ -60,6 +60,15 @@ class ItemList extends Component {
           </input></li>
           <li><input
             type="button"
+            value="Save Backup"
+            onClick={function (e) {
+              e.preventDefault()
+              this.props.onChangeMode('save')
+            }.bind(this)}
+          >
+          </input></li>
+          <li><input
+            type="button"
             value="Load Backup"
             onClick={function (e) {
               e.preventDefault()
