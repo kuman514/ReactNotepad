@@ -134,23 +134,34 @@ class App extends Component {
                   }
                   break
                 case 'load':
-                  let newArr = []
+                  let target = this
                   let input = document.createElement('input')
                   input.type = 'file'
                   input.accept = '.csv'
                   input.onchange = function (e) {
                     let reader = new FileReader()
                     reader.onload = function () {
+                      let newArr = []
+                      let highestId = 0
                       let getBackup = reader.result.split(/\r\n|\n/).slice(0, -1)
                       for (let i = 0; i < getBackup.length; i++) {
                         let current = getBackup[i].split(',')
-                        console.log(current)
+                        if (Number(current[0]) > highestId) {
+                          highestId = Number(current[0])
+                        }
                         newArr.push({
-                          id: current[0],
+                          id: Number(current[0]),
                           title: current[1],
                           detail: current[2]
                         })
                       }
+                      target.setState({
+                        mode: 'welcome',
+                        content: newArr,
+                        readingItemId: 0
+                      })
+                      target.addingId = highestId + 1
+                      console.log(target.addingId)
                     }
                     reader.readAsBinaryString(e.target.files[0], 'utf-8')
                   }
