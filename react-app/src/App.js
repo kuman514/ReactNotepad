@@ -161,20 +161,25 @@ class App extends Component {
                         readingItemId: 0
                       })
                       target.addingId = highestId + 1
-                      console.log(target.addingId)
+                      //console.log(target.addingId)
                     }
                     reader.readAsBinaryString(e.target.files[0], 'utf-8')
                   }
                   input.click()
                   break
                 case 'save':
-                  let saveCsv = 'data:text/csv;charset=utf-8,'
+                  let saveCsv = ''
                   for (let i = 0; i < this.state.content.length; i++) {
                     let row = this.state.content[i].id + ',' + this.state.content[i].title + ',' + this.state.content[i].detail
-                    saveCsv += (row + '\n')
+                    saveCsv += (row + '\r\n')
                   }
-                  let encodeUri = encodeURI(saveCsv)
-                  console.log(encodeUri)
+                  let fileTarget = document.createElement('a')
+                  let blob = new Blob(['\ufeff' + saveCsv], {type: 'data:text/csv;charset=utf-8;'})
+                  let downUrl = window.URL.createObjectURL(blob)
+                  console.log(downUrl)
+                  fileTarget.href = downUrl
+                  fileTarget.setAttribute('download', 'backup.csv')
+                  fileTarget.click()
                   break
                 default:
                   this.setState({
