@@ -106,7 +106,6 @@ class App extends Component {
           <ItemList
             data={this.state.content}
             onChangePage={function (targetId) {
-              //console.log('onChangePage')
               this.setState({
                 mode: 'read',
                 readingItemId: Number(targetId)
@@ -144,7 +143,7 @@ class App extends Component {
                       let newArr = []
                       let highestId = 0
                       let getBackup = reader.result.split(/\r\n|\n/).slice(0, -1)
-                      for (let i = 0; i < getBackup.length; i++) {
+                      for (let i = 1; i < getBackup.length; i++) {
                         let current = getBackup[i].split(',')
                         if (Number(current[0]) > highestId) {
                           highestId = Number(current[0])
@@ -161,15 +160,15 @@ class App extends Component {
                         readingItemId: 0
                       })
                       target.addingId = highestId + 1
-                      //console.log(target.addingId)
                     }
                     reader.readAsBinaryString(e.target.files[0], 'utf-8')
                   }
                   input.click()
                   break
                 case 'save':
-                  let saveCsv = ''
+                  let saveCsv = 'id,title,detail\r\n'
                   for (let i = 0; i < this.state.content.length; i++) {
+                    console.log(this.state.content[i])
                     let row = this.state.content[i].id + ',' + this.state.content[i].title + ',' + this.state.content[i].detail
                     saveCsv += (row + '\r\n')
                   }
@@ -177,7 +176,7 @@ class App extends Component {
                   let blob = new Blob(['\ufeff' + saveCsv], {type: 'data:text/csv;charset=utf-8;'})
                   let downUrl = window.URL.createObjectURL(blob)
                   console.log(downUrl)
-                  fileTarget.href = downUrl
+                  fileTarget.setAttribute('href', downUrl)
                   fileTarget.setAttribute('download', 'backup.csv')
                   fileTarget.click()
                   break
