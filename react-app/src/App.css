@@ -40,6 +40,22 @@ article {
     padding-right: 10px;
 }
 
+input[type="text"] {
+    all: unset;
+    padding: 3px;
+    border-bottom: 3px solid black;
+    width: 75vw;
+    font-size: 5vw;
+}
+
+textarea {
+    border: 2px solid black;
+    padding: 4px;
+    width: 75vw;
+    height: calc(100px + 20vw);
+    font-size: 3vw;
+}
+
 @media (max-width: 800px) {
     .NoteBody {
         display: block;
