@@ -13,6 +13,7 @@ h1 {
     padding-bottom: 20px;
     margin: 0;
     border-bottom: 1px solid gray;
+    font-size: 4vw;
 }
 
 h1:hover, input[type="button"]:hover, a:hover {
@@ -22,8 +23,9 @@ h1:hover, input[type="button"]:hover, a:hover {
 .NoteBody {
     display: grid;
     text-align: left;
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 20vw 1fr;
     border-bottom: 1px solid gray;
+    font-size: 24px;
 }
 
 input {
@@ -45,15 +47,21 @@ input[type="text"] {
     padding: 3px;
     border-bottom: 3px solid black;
     width: 75vw;
-    font-size: 5vw;
+    font-size: 30px;
 }
 
 textarea {
     border: 2px solid black;
     padding: 4px;
     width: 75vw;
-    height: calc(100px + 20vw);
-    font-size: 3vw;
+    height: calc(100px + 20vh);
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 30px;
+    padding: 10px;
+    margin: 0px;
 }
 
 @media (max-width: 800px) {
