@@ -10,20 +10,26 @@ class ItemList extends Component {
   }
   render () {
     let _article = []
-    let _data = this.props.data
-    for (let i = 0; i < _data.length; i++) {
+    let _content = this.props.data.content
+    let _reading = this.props.data.reading
+    for (let i = 0; i < _content.length; i++) {
+      let _className = ''
+      if (_reading === _content[i].id) {
+        _className = 'selected'
+      }
       _article.push(
-        <li key={_data[i].id}>
+        <li key={_content[i].id}>
           <a
-            href={"/content/" + _data[i].id}
-            data-id={_data[i].id}
+            href={"/content/" + _content[i].id}
+            data-id={_content[i].id}
             onClick={function (e) {
               e.preventDefault()
               //console.log(e)
               this.props.onChangePage(e.target.dataset.id)
             }.bind(this)}
+            className={_className}
           >
-            {_data[i].title}
+            {_content[i].title}
           </a>
         </li>
       )

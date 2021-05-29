@@ -104,7 +104,10 @@ class App extends Component {
         </Header>
         <div className="NoteBody">
           <ItemList
-            data={this.state.content}
+            data={{
+              content: this.state.content,
+              reading: this.state.readingItemId
+            }}
             onChangePage={function (targetId) {
               this.setState({
                 mode: 'read',
@@ -142,7 +145,7 @@ class App extends Component {
                     reader.onload = function () {
                       let newArr = []
                       let highestId = 0
-                      let getBackup = reader.result.split(/\r\n|\n/).slice(0, -1)
+                      let getBackup = reader.result.split(/\r\n/).slice(0, -1)
                       for (let i = 1; i < getBackup.length; i++) {
                         let current = getBackup[i].split(',')
                         if (Number(current[0]) > highestId) {

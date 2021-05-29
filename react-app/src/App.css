@@ -28,6 +28,10 @@ h1:hover, input[type="button"]:hover, a:hover {
     font-size: 24px;
 }
 
+.selected {
+    font-weight: bold;
+}
+
 input {
     display: block;
 }
